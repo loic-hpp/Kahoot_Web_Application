@@ -1,0 +1,11 @@
+<div class="page">
+<p class="color-red">Le nom du jeu existe déjà</p>
+<p class="label">Veuillez choisir un autre nom</p>
+<mat-form-field class="input">
+    <input [(ngModel)]="this.name" matInput required placeholder="Nouveau nom" />
+</mat-form-field>
+<mat-dialog-actions class="buttons page" id="space-between">
+    <button mat-raised-button class="background-red end" (click)="onCancel()">Annuler</button>
+<button mat-raised-button class="background-green save-button" (click)="onSave()">Valider</button>
+</mat-dialog-actions>
+</div>

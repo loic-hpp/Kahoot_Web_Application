@@ -1,0 +1,15 @@
+<div class="question-answer relative">
+    <div class="question-title flex">
+        <mat-icon *ngIf="question.type === 'QCM'" class="color-QCM">format_list_bulleted</mat-icon>
+        <mat-icon *ngIf="question.type === 'QRL'" class="color-blue">edit_note</mat-icon>
+        <p class="question-num">Question à {{ question.points }} points</p>
+    </div>
+    <mat-card class="question-container">
+        <mat-card-content>{{ question.text }}</mat-card-content>
+    </mat-card>
+    <div *ngIf="question.type === 'QCM'">
+        <mat-card *ngFor="let choice of this.question.choices; index as i" class="qcm-answer-container">
+            <mat-card-content>{{ i + 1 }}. {{ choice.text }}</mat-card-content>
+        </mat-card>
+    </div>
+</div>

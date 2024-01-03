@@ -1,0 +1,15 @@
+<app-logo></app-logo>
+<nav class="absolute">
+    <button class="nav-button background-beige" mat-raised-button routerLink="/administration/create-game">Créer un jeu</button>
+    <button class="nav-button background-beige" (click)="spreadClickOnImport()" mat-raised-button>
+        Importer un jeu
+        <input type="file" id="gameImport" accept=".json" (change)="import($event)" #importButton />
+    </button>
+    <button class="nav-button background-beige" mat-raised-button routerLink="/administration/history">Consulter l'historique</button>
+    <button class="nav-button background-turquoise" mat-raised-button routerLink="/home">Accueil</button>
+</nav>
+
+<div class="body-container flex-center">
+    <h1 class="color-blue">Administration des jeux</h1>
+    <app-paginator [inAdminVue]="true"></app-paginator>
+</div>

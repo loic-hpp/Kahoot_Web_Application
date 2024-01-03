@@ -1,0 +1,121 @@
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 100px;
+    left: 16rem;
+}
+
+audio {
+    display: none;
+}
+
+.panic-Circle {
+    font-size: 200%;
+    color: red;
+    .mat-mdc-progress-spinner {
+        --mdc-circular-progress-active-indicator-color: red;
+    }
+}
+
+.spinner {
+    position: absolute;
+}
+
+.full-row {
+    display: flex;
+    flex-direction: row;
+    margin: 0rem 2rem 0rem 2rem;
+}
+
+h1 {
+    color: #0a436c;
+}
+
+#players {
+    width: 100%;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    top: 3vh;
+    margin: 20px;
+    margin-right: 5px;
+}
+
+.abandon-button {
+    right: 20px;
+    top: 35px;
+    position: absolute;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 100px;
+    margin-top: 5%;
+    margin-right: 1%;
+}
+
+.panic-button {
+    left: 11rem;
+}
+
+.next-button {
+    left: 14rem;
+}
+
+button[disabled] {
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+}
+
+app-chat {
+    margin-top: 12vh;
+    grid-row: span 2;
+    width: fit-content;
+}
+
+.questions {
+    margin-top: 5rem;
+    width: 90%;
+}
+
+@media (max-width: 700px) {
+    #container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 60%;
+        position: relative;
+        left: 20%;
+    }
+    .middle {
+        order: -1;
+    }
+    #histogram {
+        order: -2;
+    }
+
+    #players {
+        order: -2;
+    }
+
+    .circle {
+        left: 50%;
+        top: 0;
+    }
+
+    .next-button {
+        left: 50%;
+        top: 0;
+    }
+}

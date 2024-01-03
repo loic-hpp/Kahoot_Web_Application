@@ -1,0 +1,22 @@
+<div>
+    <div *ngIf="!inAdminVue">
+        <div *ngFor="let game of dataSource.data">
+            <mat-card class="pointer" *ngIf="game.isVisible" (click)="navigatePreview(game.id)">
+                <mat-card-content>{{ game.title }}</mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <mat-list class="games-container" *ngIf="inAdminVue">
+        <app-game-panel *ngFor="let game of dataSource.data" [gameDirective]="game"></app-game-panel>
+    </mat-list>
+    <div class="paginator-container">
+        <mat-paginator
+            [length]="nbGames"
+            [pageSize]="4"
+            [pageSizeOptions]="[2, 4, 6, 8, 12]"
+            (page)="onPageChange($event)"
+            [ngClass]="{ 'background-pink': inAdminVue, 'background-blue': !inAdminVue }"
+        ></mat-paginator>
+    </div>
+</div>

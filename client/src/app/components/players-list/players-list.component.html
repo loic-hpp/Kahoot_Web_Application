@@ -1,0 +1,77 @@
+<mat-table
+    [dataSource]="this.matchPlayerService.dataSource"
+    id="players-list"
+    matSort
+    class="mat-elevation-z8"
+    [ngClass]="{ 'results-view-list': isResultView, 'match-list': !isResultView }"
+>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" (click)="clearSortingByPlayersState()">Nom</th>
+        <td mat-cell *matCellDef="let element" [style.color]="getDisplayColor(element.name)" [ngClass]="{ 'strike-through-text': !element.isActive }">
+            {{ element.name }}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef (click)="sortByPlayersState()" class="arrows-container">
+            <span class="state">État</span>
+            <p class="material-icons pointer arrows" [ngClass]="{ 'first-arrow': !isSortingByPlayersState }" *ngIf="!isSortingByPlayersState">
+                arrow_upward
+            </p>
+            <p class="material-icons pointer arrows" *ngIf="isSortingByStateAscending && isSortingByPlayersState">arrow_upward</p>
+            <p class="material-icons pointer arrows" *ngIf="!isSortingByStateAscending && isSortingByPlayersState" material-icons>arrow_downward</p>
+        </th>
+        <td mat-cell *matCellDef="let element" [style.color]="getDisplayColor(element.name)" [ngClass]="{ 'strike-through-text': !element.isActive }">
+            <mat-icon *ngIf="this.playerHasFinalAnswer(element.name) && !this.playerHasQuitted(element.name)">done_all</mat-icon>
+            <mat-icon
+                *ngIf="this.hasPlayerResponded(element.name) && !this.playerHasFinalAnswer(element.name) && !this.playerHasQuitted(element.name)"
+                >done</mat-icon
+            >
+            <mat-icon
+                *ngIf="!(this.playerHasFinalAnswer(element.name) || this.hasPlayerResponded(element.name) || this.playerHasQuitted(element.name))"
+                >clear</mat-icon
+            >
+            <mat-icon *ngIf="this.playerHasQuitted(element.name)">cloud_off</mat-icon>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number" (click)="clearSortingByPlayersState()">Score</th>
+        <td mat-cell *matCellDef="let element">{{ element.score }}</td>
+    </ng-container>
+    <ng-container matColumnDef="chatAccessibility">
+        <th mat-header-cell *matHeaderCellDef>Accès au clavardage</th>
+        <td mat-cell *matCellDef="let element">
+            <div>
+                <span>
+                    <mat-icon
+                        class="chat-btn"
+                        [class.active-btn]="element.chatBlocked"
+                        [class.not-active-btn]="!element.chatBlocked || playerHasQuitted(element.name)"
+                        [matTooltip]="!playerHasQuitted(element.name) ? 'Clavardage déverrouillé' : ''"
+                        >speaker_notes_off</mat-icon
+                    >
+                </span>
+                <mat-slide-toggle
+                    color="primary"
+                    [(ngModel)]="!element.chatBlocked"
+                    [disabled]="playerHasQuitted(element.name)"
+                    (click)="!playerHasQuitted(element.name) && sendChatAccessibility(element.name)"
+                ></mat-slide-toggle>
+                <span>
+                    <mat-icon
+                        class="chat-btn"
+                        [class.active-btn]="!element.chatBlocked"
+                        [class.not-active-btn]="element.chatBlocked || playerHasQuitted(element.name)"
+                        [matTooltip]="!playerHasQuitted(element.name) ? 'Clavardage verrouillé' : ''"
+                        >chat</mat-icon
+                    >
+                </span>
+            </div>
+        </td>
+    </ng-container>
+    <ng-container *ngIf="isResultView" matColumnDef="nBonusObtained">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">Fréquence Bonus 20%</th>
+        <td mat-cell *matCellDef="let element">{{ element.nBonusObtained }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</mat-table>

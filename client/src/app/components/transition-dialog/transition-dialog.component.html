@@ -1,0 +1,8 @@
+<div class="title">{{this.data.transitionText}}</div>
+<div class="circle">
+    <div class="text">{{this.timeService.timer}}</div>
+    <mat-progress-spinner mode="determinate" 
+    [value]="(this.timeService.timer * 100) / this.data.maxTime" 
+    class="spinner">
+</mat-progress-spinner>
+</div>

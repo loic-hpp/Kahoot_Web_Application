@@ -1,0 +1,20 @@
+<div id="container">
+    <h2 class="color-blue">Évaluation des réponses des joueurs</h2>
+    <p class="title">
+        Réponse de <span id="player-name">{{ questionEvaluationService.currentPlayer.name }}</span>
+    </p>
+    <mat-card class="card" id="answer-container">
+        <mat-card-content>
+            <span *ngIf="questionEvaluationService.hasPlayerResponded()" id="answer">{{ questionEvaluationService.currentPlayerAnswer }} </span>
+            <div *ngIf="!questionEvaluationService.hasPlayerResponded()" class="italic color-pink center">Le joueur n'a pas répondu</div>
+        </mat-card-content>
+    </mat-card>
+    <p class="title note-title">Note</p>
+    <div id="notes-container">
+        <mat-button-toggle-group name="notes" [(value)]="note" (click)="setNoteFactor()">
+            <mat-button-toggle class="note-button" id="note-0" value="0">0%</mat-button-toggle>
+            <mat-button-toggle class="note-button" id="note-50" value="50">50%</mat-button-toggle>
+            <mat-button-toggle class="note-button" id="note-100" value="100">100%</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>

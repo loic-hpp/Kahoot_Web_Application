@@ -1,0 +1,26 @@
+<app-logo></app-logo>
+<div class="page">
+    <nav class="absolute">
+        <button mat-raised-button class="nav-button background-red" (click)="cancelGame()">Annuler</button>
+        <button mat-raised-button class="nav-button background-beige" (click)="onLockWaitingRoom()">
+            {{ waitingRoomIsLocked ? 'Déverrouiller' : 'Verrouiller' }}
+        </button>
+        <div class="text-area">
+            <span *ngIf="!matchSrv.match.players.length" class="text-hover">Invitez des joueurs pour commencer</span>
+            <span *ngIf="matchSrv.match.players.length && !this.waitingRoomIsLocked" class="text-hover">Verrouillez la partie pour commencer</span>
+            <button
+                class="nav-button background-green start"
+                mat-raised-button
+                (click)="onBeginMatch()"
+                [disabled]="!matchSrv.match.players.length || !this.waitingRoomIsLocked"
+            >
+                Commencer
+            </button>
+        </div>
+    </nav>
+    <h1 class="color-blue bold title flex-center">Code d'accès : {{ accessCode }}</h1>
+</div>
+<h3 class="players-title">Joueurs connectés</h3>
+<div class="players-container">
+    <app-player-card *ngFor="let player of matchSrv.match.players" [player]="player" [isManager]="true" [accessCode]="accessCode"></app-player-card>
+</div>

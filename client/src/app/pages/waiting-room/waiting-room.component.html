@@ -1,0 +1,7 @@
+<app-logo></app-logo>
+<button mat-raised-button class="absolute background-red end" (click)="abandonGame()">Abandonner</button>
+<h1 class="color-blue bold title flex-center">Attente du début de la partie</h1>
+<h3 class="players-title">Joueurs connectés</h3>
+<div class="players-container">
+    <app-player-card *ngFor="let player of this.matchSrv.match.players" [player]="player"></app-player-card>
+</div>

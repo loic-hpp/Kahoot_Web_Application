@@ -1,0 +1,33 @@
+<div class="page">
+    <div class="informations flex-center">
+        <p>Nom du jeu</p>
+        <mat-form-field class="input">
+            <input [(ngModel)]="this.gameService.currentGame.title" name="nameInput" matInput required />
+            <mat-error *ngIf="!validateNameInput()">Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+
+        <p>Description du jeu</p>
+        <mat-form-field class="input">
+            <textarea [(ngModel)]="this.gameService.currentGame.description" matInput required></textarea>
+            <mat-error *ngIf="!validateDescriptionInput()">Ce champ est obligatoire</mat-error>
+        </mat-form-field>
+
+        <div class="time" id="space-between">
+            <p>Temps des QCM</p>
+            <input
+                class="time-element"
+                type="number"
+                min="10"
+                max="60"
+                [(ngModel)]="this.gameService.currentGame.duration"
+                (change)="validateQcmTime()"
+            />
+        </div>
+    </div>
+
+    <app-question-list></app-question-list>
+
+    <button mat-raised-button id="add-question-button" class="action-button background-beige" (click)="onOpenQuestionForm()">
+        Ajouter une question
+    </button>
+</div>

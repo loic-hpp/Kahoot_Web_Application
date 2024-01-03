@@ -1,0 +1,24 @@
+<button mat-raised-button class="background-red end" (click)="handleQuitMatchActions()">Abandonner</button>
+<div class="match-view-container relative">
+    <app-question-answer (keydown.enter)="this.onEnterKey()"></app-question-answer>
+    <div class="flex-center space-between test">
+        <mat-card class="blue-bg score-label">
+            <mat-card-content>Score actuel : {{ this.getScore() }} points</mat-card-content>
+        </mat-card>
+        <div *ngIf="!this.isPanicMode" class="circle">
+            <div>{{ this.matchSrv.timeService.timer }}</div>
+            <mat-progress-spinner mode="determinate" [value]="(this.matchSrv.timeService.timer * 100) / this.maxTime" class="spinner">
+            </mat-progress-spinner>
+        </div>
+
+        <div *ngIf="this.isPanicMode" class="circle panic-Circle">
+            <div>{{ this.matchSrv.timeService.timer }}</div>
+            <mat-progress-spinner mode="determinate" [value]="(this.matchSrv.timeService.timer * 100) / this.maxTime" class="spinner">
+            </mat-progress-spinner>
+            <audio controls autoplay (ended)="restartAudio()" #audioZone>
+                <source src="assets/panic_music.mp3" type="audio/mp3" />
+            </audio>
+        </div>
+    </div>
+    <app-chat (keydown.enter)="this.onEnterKey()"></app-chat>
+</div>

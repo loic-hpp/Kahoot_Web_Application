@@ -1,0 +1,14 @@
+<app-logo></app-logo>
+<button mat-raised-button routerLink="/home" class="background-turquoise absolute" id="top-button">Accueil</button>
+<div class="form-group flex-center" id="space-between">
+    <h1 class="color-blue">Accès à l'administration des jeux</h1>
+    <p class="label">Veuillez entrer le mot de passe pour accéder à l'administration des jeux</p>
+    <mat-form-field id="password-form">
+        <mat-label>Mot de passe </mat-label>
+        <input type="password" matInput [(ngModel)]="password" required />
+    </mat-form-field>
+    <mat-error *ngIf="passwordError">Mot de passe incorrect!</mat-error>
+</div>
+<div class="action-buttons">
+    <button class="background-green block" mat-raised-button (click)="onLogin()">Accéder</button>
+</div>

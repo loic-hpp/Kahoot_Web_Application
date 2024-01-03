@@ -1,0 +1,52 @@
+<div class="question-answer relative">
+    <div class="question-title flex">
+        <mat-icon *ngIf="question.type === 'QCM'" class="color-QCM">format_list_bulleted</mat-icon>
+        <mat-icon *ngIf="question.type === 'QRL'" class="color-blue">edit_note</mat-icon>
+        <p class="question-num">Question à {{ question.points }} points</p>
+    </div>
+    <mat-card class="question-container">
+        <mat-card-content>{{ question.text }}</mat-card-content>
+    </mat-card>
+    <div *ngIf="question.type === 'QRL'">
+        <p class="answer-title">Votre réponse :</p>
+        <mat-form-field class="qrl-answer-container" appearance="fill">
+            <textarea
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="10"
+                matInput
+                maxlength="200"
+                (input)="onTextAreaChange()"
+                placeholder="{{ matchSrv.showingResults ? questionEvaluation.currentPlayerAnswer : '...' }}"
+                class="textarea"
+                [(ngModel)]="qrlAnswer"
+                [readonly]="matchSrv.showingResults || sendButtonDisabled"
+                [style.caret-color]="matchSrv.showingResults || sendButtonDisabled ? 'transparent' : 'auto'"
+                #input
+            ></textarea>
+            <mat-hint align="end">{{ !matchSrv.showingResults ? input.value.length : questionEvaluation.currentPlayerAnswer.length }}/200 </mat-hint>
+        </mat-form-field>
+    </div>
+    <div *ngIf="question.type === 'QCM'">
+        <div class="row align-items-center" *ngFor="let choice of question.choices; index as i">
+            <mat-card [ngClass]="getOptionBackgroundColor(choice)" class="qcm-answer-container pointer" (click)="onSelect(choice)">
+                <mat-card-content>{{ i + 1 }}. {{ choice.text }}</mat-card-content>
+            </mat-card>
+            <div class="p-20" *ngIf="matchSrv.showingResults">
+                <mat-icon [ngClass]="getAnswerIcon(choice)">{{ getAnswerIcon(choice) }}</mat-icon>
+            </div>
+        </div>
+    </div>
+    <span *ngIf="!matchSrv.showingResults">
+        <button
+            mat-raised-button
+            class="confirm-button"
+            (click)="onSend()"
+            [disabled]="sendButtonDisabled"
+            [class.gray-bg]="sendButtonDisabled"
+            [class.background-green]="!sendButtonDisabled"
+        >
+            Envoyer
+        </button>
+    </span>
+</div>

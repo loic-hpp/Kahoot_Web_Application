@@ -1,0 +1,56 @@
+<mat-dialog-content class="page">
+    <div class="points" id="space-between">
+        <p>Points de la question</p>
+        <mat-icon fontIcon="remove" (click)="onDecreasePoints()" class="icon color-blue pointer"></mat-icon>
+        <p class="points-element color-blue">{{ question.points }}</p>
+        <mat-icon fontIcon="add" (click)="onIncreasePoints()" class="icon color-blue pointer"></mat-icon>
+    </div>
+
+    <p class="description">Énoncé de la question</p>
+    <mat-form-field class="input-description">
+        <input [(ngModel)]="question.text" matInput class="input-element" />
+    </mat-form-field>
+
+    <p>Type de la question</p>
+    <mat-form-field class="input-type">
+        <mat-select [(value)]="question.type">
+            <mat-option value="QCM" (onSelectionChange)="onAddChoices()">QCM</mat-option>
+            <mat-option value="QRL">QRL</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="question.type === 'QCM'">
+        <div class="choice-answer">
+            <p>Choix de réponse</p>
+
+            <div cdkDropList (cdkDropListDropped)="onDrop($event)">
+                <div *ngFor="let choices of question.choices; index as i" cdkDrag class="list-item">
+                    <mat-icon fontIcon="delete" class="delete-icon color-blue" (click)="onDeleteChoice(i)"></mat-icon>
+
+                    <span class="cursor-item">
+                        <mat-form-field class="choice-input">
+                            <mat-label>Choix de réponse {{ i + 1 }} </mat-label>
+                            <input [(ngModel)]="question.choices[i].text" matInput class="input-element" />
+                        </mat-form-field>
+
+                        <mat-slide-toggle class="toggle-button" labelPosition="before" color="primary" [(ngModel)]="question.choices[i].isCorrect"
+                            >Validité du choix</mat-slide-toggle
+                        >
+                        <span class="is-correct" *ngIf="question.choices[i].isCorrect">Bonne réponse</span>
+                        <span class="color-red" *ngIf="!question.choices[i].isCorrect">Mauvaise réponse</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button
+        *ngIf="question.type === 'QCM'"
+        mat-raised-button
+        class="background-beige"
+        id="add-choice-button"
+        [disabled]="maxChoicesReached()"
+        (click)="onNewChoice()"
+    >
+        Ajouter un choix
+    </button>
+</mat-dialog-content>

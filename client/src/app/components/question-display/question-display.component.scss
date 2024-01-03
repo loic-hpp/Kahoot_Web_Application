@@ -1,0 +1,36 @@
+.question-answer {
+    font-family: sans-serif;
+}
+
+.question-title {
+    margin-top: -5rem;
+    margin-left: 1rem;
+}
+
+.question-num {
+    font-size: 20px;
+    margin-left: 0.5rem;
+}
+
+.question-container {
+    background-color: #a9d0d4;
+    margin-bottom: 20px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: none;
+    margin-left: 3rem;
+    max-width: 560px;
+    min-width: 200px;
+}
+
+.qcm-answer-container {
+    background-color: #f9cba8;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+}
+
+mat-card-content {
+    font-size: 20px;
+}

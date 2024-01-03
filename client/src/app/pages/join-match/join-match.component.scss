@@ -1,0 +1,20 @@
+.action-buttons {
+    width: 100%;
+}
+
+.action-buttons > button {
+    margin: 20px auto;
+    border: 0;
+    font-size: 2rem;
+    height: 3rem;
+    transition: transform 0.2s;
+}
+.action-buttons > button:hover {
+    transform: scale(1.1);
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

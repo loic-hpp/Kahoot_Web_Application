@@ -1,0 +1,16 @@
+<app-logo></app-logo>
+<div *ngIf="!accessCodeIsValid">
+    <app-login [title]="'Joindre une partie'" [text]="'Veuillez entrer le code d’accès de la partie'" [inputType]="'text'" [label]="'Code d’accès'">
+    </app-login>
+    <mat-error class="flex-center" *ngIf="accessCodeError">Code d’accès incorrect!</mat-error>
+    <div class="action-buttons">
+        <button class="background-green block" mat-raised-button (click)="onAccessCodeEntry()">Suivant</button>
+    </div>
+</div>
+<div *ngIf="accessCodeIsValid">
+    <app-login [title]="'Joindre une partie'" [text]="'Veuillez entrer votre nom de joueur'" [inputType]="'text'" [label]="'Nom'"> </app-login>
+    <mat-error class="flex-center" *ngIf="nameError">Le nom entré est invalide ou il existe déjà! Veuillez choisir un nouveau nom</mat-error>
+    <div class="action-buttons">
+        <button class="background-green block" mat-raised-button (click)="onJoinMatch()">Joindre</button>
+    </div>
+</div>

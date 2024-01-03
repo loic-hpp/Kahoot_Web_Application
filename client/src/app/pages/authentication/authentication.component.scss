@@ -1,0 +1,47 @@
+.form-group {
+    margin: 10px auto;
+    width: 80%;
+}
+
+#password-form {
+    width: 50%;
+}
+
+.action-buttons {
+    width: 100%;
+}
+
+.action-buttons > button {
+    margin: 20px auto;
+    border: 0;
+    font-size: 2rem;
+    height: 3rem;
+    transition: transform 0.2s;
+}
+.action-buttons > button:hover {
+    transform: scale(1.1);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.label {
+    font-size: 1.5rem;
+    margin-top: 5%;
+    margin-bottom: 2.5%;
+}
+
+#top-button {
+    margin: 0;
+    border: 0;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    right: 0;
+    top: 5rem;
+}

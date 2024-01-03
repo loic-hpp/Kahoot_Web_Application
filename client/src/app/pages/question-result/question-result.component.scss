@@ -1,0 +1,40 @@
+.title {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+.timer {
+    font-size: 2rem;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.points {
+    margin-top: 20px;
+}
+
+button {
+    float: right;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+.blue-bg {
+    background-color: #79b5eb;
+    color: white !important;
+}
+
+app-chat {
+    margin-top: -150px;
+}
+
+app-question-answer{
+    width: 100%;
+}

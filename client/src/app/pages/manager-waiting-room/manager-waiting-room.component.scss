@@ -1,0 +1,66 @@
+h1 {
+    font-size: 3rem;
+    margin-bottom: 3%;
+}
+
+nav {
+    right: 0;
+    top: 1rem;
+}
+
+button.nav-button {
+    margin-right: 0.6rem;
+    font-size: 1.8rem;
+    top: 3rem;
+}
+
+.start {
+    height: 6rem;
+    border-radius: 0.5rem;
+}
+
+.players-title {
+    color: #ff6868;
+    font-size: 2rem;
+    margin: 1.5rem;
+}
+.players-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin: 1.5rem;
+}
+button[disabled] {
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+}
+
+.c {
+    margin-left: 20rem;
+}
+
+  .text-area {
+    position: relative;
+    display: inline-block;
+    height: 9rem;
+  }
+  
+  .text-area .text-hover {
+    visibility: hidden;
+    width: 10rem;
+    background-color: rgb(173, 195, 209);
+    color: #000000;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    position: absolute;
+    left: 1.4rem;
+    z-index: 1;
+    top: 9.5rem;
+    font-size: medium;
+  }
+  
+  .text-area:hover .text-hover {
+    visibility: visible;
+  }

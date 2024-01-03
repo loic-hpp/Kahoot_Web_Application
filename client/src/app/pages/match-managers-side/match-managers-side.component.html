@@ -1,0 +1,49 @@
+<button mat-raised-button class="abandon-button background-red end" (click)="finishMatch()">Quitter</button>
+<div id="container">
+    <div class="histogram" *ngIf="!this.listenerSrv.evaluationSrv.isEvaluatingQrlQuestions">
+        <h1>Statistiques des réponses</h1>
+        <app-histogram></app-histogram>
+    </div>
+    <app-qrl-evaluation id="evaluation-container" *ngIf="this.listenerSrv.evaluationSrv.isEvaluatingQrlQuestions"></app-qrl-evaluation>
+    <div class="full-row">
+        <div id="players">
+            <h1>Joueurs</h1>
+            <app-players-list [isResultView]="false"></app-players-list>
+        </div>
+    </div>
+    <app-chat></app-chat>
+    <app-question-display class="questions" [question]="question"></app-question-display>
+
+    <div class="middle">
+        <div *ngIf="!this.listenerSrv.histogramSrv.isShowingQuestionResults && !this.isPanicMode" class="circle">
+            <div>{{ this.matchService.timeService.timer }}</div>
+            <mat-progress-spinner mode="determinate" [value]="(this.matchService.timeService.timer * 100) / this.maxTime" class="spinner">
+            </mat-progress-spinner>
+        </div>
+        <div *ngIf="!this.listenerSrv.histogramSrv.isShowingQuestionResults && this.isPanicMode" class="circle panic-Circle">
+            <div>{{ this.matchService.timeService.timer }}</div>
+            <mat-progress-spinner mode="determinate" [value]="(this.matchService.timeService.timer * 100) / this.maxTime" class="spinner">
+            </mat-progress-spinner>
+            <audio controls autoplay (ended)="restartAudio()" #audioZone>
+                <source src="assets/panic_music.mp3" type="audio/mp3" />
+            </audio>
+        </div>
+        <div class="full-row" *ngIf="!this.listenerSrv.histogramSrv.isShowingQuestionResults">
+            <button
+                mat-raised-button
+                class="panic-button buttons background-beige"
+                (click)="startPanicModeTimer()"
+                [disabled]="!isPanicModeSettable() || this.isPanicMode || isPaused"
+            >
+                Mode panique
+            </button>
+            <button mat-raised-button class="panic-button buttons background-green" (click)="timerPauseHandler()">
+                <i class="material-icons pause pointer" *ngIf="!isPaused">pause</i>
+                <i class="material-icons resume pointer" *ngIf="isPaused">play_arrow</i>
+            </button>
+        </div>
+        <button mat-raised-button class="next-button buttons background-beige" *ngIf="this.canMoveToNextQuestion()" (click)="onNextQuestion()">
+            {{ isLastQuestion ? 'Présenter les résultats' : 'Prochaine question' }}
+        </button>
+    </div>
+</div>

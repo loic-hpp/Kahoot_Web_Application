@@ -1,0 +1,5 @@
+<h1 class="color-blue body-container flex-center">Êtes-vous certain de vouloir {{this.confirmationService.dialogMessage}} ?</h1>
+<mat-dialog-actions class="buttons page" id="space-between">
+    <button mat-raised-button mat-dialog-close class="background-red action-button block" (click)="cancel()">Non</button>
+    <button mat-raised-button class="background-green action-button" (click)="confirm()">Oui</button>
+</mat-dialog-actions>

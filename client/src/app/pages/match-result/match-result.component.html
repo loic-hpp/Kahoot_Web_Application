@@ -1,0 +1,18 @@
+<nav class="nav"><app-logo></app-logo></nav>
+<button class="absolute absolute-button end background-turquoise" mat-raised-button id="home" (click)="redirectToHome()">Accueil</button>
+<div id="players">
+    <h1>Résultats de la partie</h1>
+    <app-players-list [isResultView]="true"></app-players-list>
+</div>
+
+<div id="container">
+    <div class="histogram">
+        <h1>Statistiques de la question {{ this.histogramService.currentChartIndex + 1 }}</h1>
+        <div class="flex">
+            <mat-icon (click)="onShowPreviousChart()" class="chevrons pointer">chevron_left</mat-icon>
+            <app-histogram></app-histogram>
+            <mat-icon (click)="onShowNextChart()" class="chevrons pointer">chevron_right</mat-icon>
+        </div>
+    </div>
+    <app-chat id="chat"></app-chat>
+</div>

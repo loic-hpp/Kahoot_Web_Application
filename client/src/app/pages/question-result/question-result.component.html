@@ -1,0 +1,19 @@
+<h1 class="timer color-red bold italic" *ngIf="matchSrv.match.testing">{{ transitionText }} dans {{ this.timer }} secondes</h1>
+<button mat-raised-button class="background-red" (click)="quitMatch()">Abandonner</button>
+<div class="full-row p-20">
+    <div class="flex-center">
+        <h1 class="color-blue bold title flex-center">Résultats de la question</h1>
+        <p>{{ matchSrv.player.name }}, {{ this.matchSrv.feedBackMessages[0] }}</p>
+        <p>
+            {{ this.matchSrv.feedBackMessages[1] }}
+        </p>
+        <mat-card class="blue-bg points">
+            <mat-card-content>Score actuel : {{ matchSrv.player.score }} points</mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div class="full-row p-20" id="space-between">
+    <app-question-answer></app-question-answer>
+    <app-chat></app-chat>
+</div>
